@@ -1,0 +1,176 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>موقعي الشخصي</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: #007acc;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 6px 12px;
+            display: inline-block;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            text-decoration: underline;
+            background-color: #005fa3;
+            border-radius: 4px;
+        }
+
+        section {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        h1, h2 {
+            color: #007acc;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #005fa3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #eee;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="#home" class="active">الرئيسية</a></li>
+            <li><a href="#about">عني</a></li>
+            <li><a href="#contact">اتصل بي</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="home">
+    <h1>مرحبًا بك في موقعي الشخصي!</h1>
+    <p>هذا الموقع يعرّف بي وبمشاريعي.</p>
+</section>
+
+<section id="about">
+    <h2>عنّي</h2>
+    <p>أنا مطور ويب مهتم بتعلم التقنيات الحديثة وتصميم المواقع الجميلة.</p>
+</section>
+
+<section id="contact">
+    <h2>اتصل بي</h2>
+    <form id="contactForm">
+        <label for="name">الاسم:</label><br />
+        <input type="text" id="name" name="name" required /><br />
+
+        <label for="email">البريد الإلكتروني:</label><br />
+        <input type="email" id="email" name="email" required /><br />
+
+        <label for="message">الرسالة:</label><br />
+        <textarea id="message" name="message" rows="5" required></textarea><br />
+
+        <button type="submit">إرسال</button>
+    </form>
+    <p id="response"></p>
+</section>
+
+<footer>
+    <p>حقوق النشر © 2025</p>
+</footer>
+
+<script>
+    // تفعيل رسالة تأكيد عند إرسال النموذج
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        document.getElementById("response").textContent = "شكرًا لتواصلك معنا!";
+        this.reset();
+    });
+
+    // إضافة تمييز للرابط النشط في القائمة عند التمرير
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav ul li a");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 60;
+            if (pageYOffset >= sectionTop) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#" + current) {
+                link.classList.add("active");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
